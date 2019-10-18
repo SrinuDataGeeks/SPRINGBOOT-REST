@@ -1,0 +1,96 @@
+
+SpringBoot Notes :
+
+https://howtodoinjava.com/spring-boot-tutorials/
+
+
+SpringBoot :
+*********
+
+1. SpringBoot is bootstrap framework from Spring which integrates all the spring modules togather.
+2. SpringBoot enable programer only concentrate of application logic, the complete configuration required from springboot application can be takencare implicitly.
+3. SpringBoot contains implicit server, so that all the web and restfull applications can be deployed by the SpringBoot.
+
+
+SpringBoot - Core , AOP , JDBC & ORM Modules
+**********
+=> @SpringBootApplication annotation enables the project as springboot application.
+=> By default SpringBoot base package is equals to @SpringBootApplication class package name.
+=> By default SpringBoot application run on web environment but to work with Core , AOP , JDBC & ORM modules we need to observe the output in the consle.
+=> So that the SpringBoot application should implement CommandLineRunner interface & we should override the run() method. Whatever logic we write run() method can be implicitly invoked by SpringBoot.
+
+
+Dependecies for Spring - Core
+****************************
+
+spring-boot-starter , spring-boot-devtools , spring-boot-starter-test
+
+
+spring-boot-starter => Downloads all dependencies required for core module , spring-core,spring-context,spring-beans jars etc...
+
+spring-boot-devtools => When we do the changes in SpringBoot application can be published automatically using  spring-boot-devtools 
+
+spring-boot-starter-test => Which can get all the depencies related to unit testins such as junit,mock etc...
+
+
+
+Dependecies for Spring - AOP
+****************************
+spring-boot-starter , spring-boot-devtools , spring-boot-starter-test,aspectjrt,aspectjweaver
+
+=> Apply apspectj annotations wihin advice classes & select the joinpoint with pointcut expression.
+
+
+Dependecies for Spring - JDBC
+****************************
+
+1.spring-boot-starter-jdbc , spring-boot-devtools , spring-boot-starter-test ,ojdbc6
+
+2.spring-boot-starter-jdbc => Downloads all dependencies required for core module & jdbc module.
+
+The complete db infomation can be mentioned in application.properties :
+spring.datasource.username=system
+spring.datasource.password=tiger
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521:XE
+spring.datasource.driverClassName=oracle.jdbc.OracleDriver
+
+3. take the "JdbcTemplate" as a dependency in the DAO class then develop a persistence logic.
+
+Dependecies for Spring - ORM
+****************************
+1. spring-boot-starter-data-jpa , spring-boot-devtools , spring-boot-starter-test ,ojdbc6
+
+spring-boot-starter-data-jpa => Downloads all dependencies required for Core & ORM module, which implcitly downloads both JPA and Hibrenate jars.
+
+2. The complete hibernate configuration can be mentioned in application.properties :
+
+spring.datasource.username=system
+spring.datasource.password=tiger
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521:XE
+spring.datasource.driverClassName=oracle.jdbc.OracleDriver
+
+## Hibernate Properties
+# The SQL dialect makes Hibernate generate better SQL for the chosen database
+spring.jpa.properties.hibernate.dialect =org.hibernate.dialect.Oracle10gDialect
+spring.jpa.properties.hibernate.show_sql = true
+
+
+3. Within DAO classes take EntityManager as a dependecy and within DAO class methods unwrap the "Session" from EntityManager , develop the persistence logic using "org.hinernate.Session".
+
+
+SpringBoot MVC and RESTful :-
+**************************
+SpringBoot by default supports web deployment , SpringBoot has implicit tomcat server. When we start the SpringBoot application the complete code will be packaged into war then that war will be deployed into the the within SpringBoot tomcat server.
+
+The server port and the context path can be mentioned within the application.properties file.
+
+server.servlet.contextPath = /demomvcapp
+server.port = 8888
+
+If you are working Spring-MVC with jsps add the following properties as well
+
+spring.mvc.view.prefix=/
+spring.mvc.view.suffix=.jsp
+
+
+
